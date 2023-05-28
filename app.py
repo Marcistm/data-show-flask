@@ -1,10 +1,7 @@
 import json
-from json import dumps
-
-import pandas as pd
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from pymongo import MongoClient, GEOSPHERE
+from pymongo import MongoClient
 from faker import Faker
 import random
 import datetime
@@ -42,7 +39,7 @@ def search():
     timestamp = request.args.get('time')
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
-    nearby_users = query_users_nearby(timestamp, latitude, longitude, 1000000)
+    nearby_users = query_users_nearby(timestamp, latitude, longitude, 100000)
     return jsonify(code=200, msg='success', data=nearby_users), 200
 
 
